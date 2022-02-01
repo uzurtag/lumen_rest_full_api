@@ -30,6 +30,8 @@ Clone and setup
 
 `git clone https://github.com/uzurtag/lumen_rest_full_api.git`
 
+`composer install`
+
 `php artisan migrate`
 
 `php artisan db:seed`
