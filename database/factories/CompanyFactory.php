@@ -2,18 +2,17 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Facades\Hash;
 
-class UserFactory extends Factory
+class CompanyFactory extends Factory
 {
     /**
      * The name of the factory's corresponding model.
      *
      * @var string
      */
-    protected $model = User::class;
+    protected $model = Company::class;
 
     /**
      * Define the model's default state.
@@ -23,13 +22,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'email' => $this->faker->unique()->safeEmail,
-            'password' => Hash::make('password'),
-            'first_name' => $this->faker->firstName,
-            'last_name' => $this->faker->lastName,
+            'user_id' => $this->faker->numberBetween($min = 1, $max = 3),
+            'title' => $this->faker->title,
+            'description' => $this->faker->text,
             'phone' => $this->faker->numerify('##########'),
-            'token' => null,
-            'password_hash' => null,
         ];
     }
 }

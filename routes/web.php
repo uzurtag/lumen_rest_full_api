@@ -16,3 +16,17 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'api'], function () use ($router) {
+    $router->group(['prefix' => 'user'], function () use ($router) {
+        $router->post('register', 'UserController@store');
+        $router->post('sign-in', 'UserController@authenticate');
+        $router->post('recover-initialize', 'UserController@initializeResetPassword');
+        $router->patch('recover-password', 'UserController@restore');
+
+        $router->group(['prefix' => 'companies', 'middleware' => 'auth'], function () use ($router) {
+            $router->get('/', 'CompanyController@show');
+            $router->post('/', 'CompanyController@store');
+        });
+    });
+});
